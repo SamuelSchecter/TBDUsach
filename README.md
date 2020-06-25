@@ -2,7 +2,7 @@
 
 Ofrece un servicio que une proveedores y consumidores en el país enfocado en la consulta rápida sobre los productos y la evaluación de los usuarios en forma de aplicativo web.
 
-###Alcances
+### Alcances
 
 * Cualquier persona puede registrarse como usuario proveedor o consumidor en el sistema.
 * Se mostrarán datos del perfil de los usuarios, tal como, su nombre, foto de perfil y evaluación de manera pública.
@@ -11,7 +11,7 @@ Ofrece un servicio que une proveedores y consumidores en el país enfocado en la
 * Los consumidores podrán realizar consultas sobre un producto en particular.
 * Los productos tendrán estados que facilitaran crearlos y publicarlos, permitiendo tenerlos por ejemplo en borrador o desactivados.
 
-###Limitaciones
+### Limitaciones
 
 El sistema no contempla:
 
@@ -25,7 +25,7 @@ El sistema no contempla:
 * Las calificaciones de los productos no son editables.
 * No se guardan historiales de datos de productos.
 
-##Instalación
+## Instalación
 
 ### SQL Server
 
@@ -120,11 +120,11 @@ Los siguientes pasos usan sqlcmd para conectarse localmente a su nueva instancia
 ## Autores
 
 * **Samuel Arriagada** - Trabajo inicial - [SamuelSchecter](https://github.com/SamuelSchecter)
-* **Mariana Encalada** - Trabvajo inicial - [marianaencalada](https://github.com/marianaencalada)
-* **Juan Gamboa** - Trabajo inicial - [vuduzeta](https://github.com/vuduzeta)
+* **Mariana Encalada** - Trabajo inicial - [marianaencalada](https://github.com/marianaencalada)
+* **Juan Gamboa** - Documentación - [vuduzeta](https://github.com/vuduzeta)
 * **Álvaro Reyes** - Trabajo inicial - [Areyesenc](https://github.com/Areyesenc)
 
 ## Otros enlaces
 
-* [Metodología Kanban]()
+* [Metodología Kanban](https://trello.com/b/htISa8xu/easy-sell)
 
