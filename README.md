@@ -109,9 +109,27 @@ Los siguientes pasos usan sqlcmd para conectarse localmente a su nueva instancia
 
 3. Si obtiene una falla de conexión, primero intente diagnosticar el problema desde el mensaje de error. Luego revise las [recomendaciones de solución de problemas de conexión](https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-troubleshooting-guide?view=sql-server-ver15#connection).
 
+### DBeaver
+
+1. Importe las claves del repositorio:
+
+`wget -O - https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key add -`
+
+2. Añada el propio repositorio:
+
+`echo "deb https://dbeaver.io/debs/dbeaver-ce /" \ | sudo tee /etc/apt/sources.list.d/dbeaver.list`
+
+3. Ejecute los siguientes comandos para instalar DBeaber:
+```
+sudo apt update
+sudo apt install dbeaver-ce
+```
+En este punto ya podemos encontrar la herramienta disponible.
+
 ## Construido con
 
 * [Microsoft SQL Server](https://www.microsoft.com/es-es/sql-server/sql-server-2019) - Base de datos relacional.
+* [DBeaver](https://dbeaver.io/download/) - Herramienta de administración bases de datos.
 * [MongoDB](https://www.mongodb.com/) - Base de datos no relacional.
 
 ## Versionado
