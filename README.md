@@ -120,9 +120,9 @@ Los siguientes pasos usan sqlcmd para conectarse localmente a su nueva instancia
 ## Autores
 
 * **Samuel Arriagada** - Trabajo inicial - [SamuelSchecter](https://github.com/SamuelSchecter)
-* **Mariana Encalada** - Trabvajo inicial - [Areyesenc](https://github.com/Areyesenc)
+* **Mariana Encalada** - Trabvajo inicial - [marianaencalada](https://github.com/marianaencalada)
 * **Juan Gamboa** - Trabajo inicial - [vuduzeta](https://github.com/vuduzeta)
-* **Álvaro Reyes** - Trabajo inicial - []()
+* **Álvaro Reyes** - Trabajo inicial - [Areyesenc](https://github.com/Areyesenc)
 
 ## Otros enlaces
 
