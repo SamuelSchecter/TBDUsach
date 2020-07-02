@@ -1,0 +1,10 @@
+{
+    "Nombre": "correa gato",
+    "description": "correa azul de 1m de largo con arnes de cuerpo para gatos de departamento",
+    "precio": 7900,
+    "categorias": ["mascotas", "paseo"],
+    "subcategorias": [
+        "gato",
+        "azul"
+    ]
+}
