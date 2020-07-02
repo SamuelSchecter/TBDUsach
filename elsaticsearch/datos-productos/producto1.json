@@ -1,0 +1,28 @@
+{
+	"Nombre": "correa perro peque",
+	"description": "correa rosada de 2m de largo con arnes de cuerpo para perros pequeños",
+	"precio": 6000,
+	"categorias": ["mascotas", "paseo", "actividad al aire libre"],
+	"subcategorias": [
+		"perro",
+		"rosado"
+	],
+	"imagenes": [
+		{
+			"imagen": "perrito1.png",
+			"fecha_creacion": "2020/03/01"
+		},
+		{
+			"imagen": "chiguaga3.jpg",
+			"fecha_creacion": "2020/03/01"
+		}
+	],
+	"puntuaciones": [
+		{
+			"usuario": "mariana encalada",
+			"comentario": "muy buena la correa, perfecta para mi perrito",
+			"calificacion": 5,
+			"fecha_puntuacion": "2020/03/12"
+		}
+	]
+}
