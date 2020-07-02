@@ -13,7 +13,7 @@ go
 /* Table: ACCESO_ROL_ITEM                                       */
 /*==============================================================*/
 create table ACCESO_ROL_ITEM (
-   ID                   int		             not null	PRIMARY KEY,
+   ID                   int		             not null	PRIMARY KEY IDENTITY(1,1),
    ID_ROL               int 	             not null,
    ID_ITEM              int 	             not null
 )
@@ -23,7 +23,7 @@ go
 /* Table: ACCESO_USUARIO                                        */
 /*==============================================================*/
 create table ACCESO_USUARIO (
-   ID                   int		             not null PRIMARY KEY,
+   ID                   int		             not null PRIMARY KEY IDENTITY(1,1),
    ID_USUARIO           int		             not null,
    FECHA_ACCESO         date             	 null,
    ESTADO               bit		             null
@@ -34,7 +34,7 @@ go
 /* Table: CATEGORIA                                             */
 /*==============================================================*/
 create table CATEGORIA (
-   ID                   int                  not null	PRIMARY KEY,
+   ID                   int                  not null	PRIMARY KEY IDENTITY(1,1),
    TIPO                 varchar(100)         null,
    NOMBRE               varchar(100)         null,
 )
@@ -44,7 +44,7 @@ go
 /* Table: CATEGORIA_PRODUCTO                                    */
 /*==============================================================*/
 create table CATEGORIA_PRODUCTO (
-   ID                   int 	             not null		PRIMARY KEY,
+   ID                   int 	             not null		PRIMARY KEY IDENTITY(1,1),
    ID_PRODUCTO          int		             not null,
    ID_CATEGORIA         int		             not null,
 )
@@ -54,7 +54,7 @@ go
 /* Table: COMPRA                                                */
 /*==============================================================*/
 create table COMPRA (
-   ID                   int                  not null	PRIMARY KEY,
+   ID                   int                  not null	PRIMARY KEY IDENTITY(1,1),
    COSTO                int                  null,
    ID_USUARIO           int                  not null
 )
@@ -64,7 +64,7 @@ go
 /* Table: CONSULTA                                              */
 /*==============================================================*/
 create table CONSULTA (
-   ID                   char(10)             not null	PRIMARY KEY,
+   ID                   char(10)             not null	PRIMARY KEY IDENTITY(1,1),
    TEXTO                char(1000)           null,
    FECHA_CONSULTA       date                 null,
    ESTADO               int                  not null,
@@ -77,7 +77,7 @@ go
 /* Table: DETALLE_COMPRA                                        */
 /*==============================================================*/
 create table DETALLE_COMPRA (
-   ID                   int                  not null	PRIMARY KEY,
+   ID                   int                  not null	PRIMARY KEY IDENTITY(1,1),
    ID_PRODUCTO          int                  not null,
    CANTIDAD             int                  null,
    FECHA_COMPRA         date                 null,
@@ -89,7 +89,7 @@ go
 /* Table: ESTADO                                                */
 /*==============================================================*/
 create table ESTADO (
-   ID                   int                  not null PRIMARY KEY,
+   ID                   int                  not null PRIMARY KEY IDENTITY(1,1),
    NOMBRE               varchar(50)          null
 )
 go
@@ -98,7 +98,7 @@ go
 /* Table: IMAGEN                                                */
 /*==============================================================*/
 create table IMAGEN (
-   ID                   int                  not null	PRIMARY KEY,
+   ID                   int                  not null	PRIMARY KEY IDENTITY(1,1),
    ID_PRODUCTO          int                  not null,
    IMAGEN               image                null,
    TAMANO               int                  null,
@@ -111,7 +111,7 @@ go
 /* Table: ITEM_PLATAFORMA                                       */
 /*==============================================================*/
 create table ITEM_PLATAFORMA (
-   ID                   int                  not null	PRIMARY KEY,
+   ID                   int                  not null	PRIMARY KEY IDENTITY(1,1),
    ITEM_ACCESO          varchar(100)         null,
    ESTADO               int                  not null
 )
@@ -121,7 +121,7 @@ go
 /* Table: PRODUCTO                                              */
 /*==============================================================*/
 create table PRODUCTO (
-   ID                   int            		 not null	PRIMARY KEY,
+   ID                   int            		 not null	PRIMARY KEY IDENTITY(1,1),
    NOMBRE               varchar(100)         null,
    ESTADO               int                  not null,
    ID_PUBLICACION       int                  not null,
@@ -134,7 +134,7 @@ go
 /* Table: PUBLICACION                                           */
 /*==============================================================*/
 create table PUBLICACION (
-   ID                   int                  not null	PRIMARY KEY,
+   ID                   int                  not null	PRIMARY KEY IDENTITY(1,1),
    FECHA_CREACION       date                 null,
    ID_USUARIO           int                  not null,
    ESTADO               int                  not null
@@ -145,7 +145,7 @@ go
 /* Table: PUNTUACION_PRODUCTO                                   */
 /*==============================================================*/
 create table PUNTUACION_PRODUCTO (
-   ID                   int            	 	 not null	PRIMARY KEY,
+   ID                   int            	 	 not null	PRIMARY KEY IDENTITY(1,1),
    ID_PRODUCTO          int                  not null,
    ID_USUARIO           int                  not null,
    COMENTARIO           varchar(1000)        null,
@@ -159,7 +159,7 @@ go
 /* Table: PUNTUACION_USUARIO                                    */
 /*==============================================================*/
 create table PUNTUACION_USUARIO (
-   ID                   int                  not null	PRIMARY KEY,
+   ID                   int                  not null	PRIMARY KEY IDENTITY(1,1),
    ID_USUARIO           int                  not null,
    ID_USUARIO_CALIFICADO int                 not null,
    FECHA_PUNTUACION     date                 null,
@@ -172,7 +172,7 @@ go
 /* Table: ROL                                                   */
 /*==============================================================*/
 create table ROL (
-   ID                   int             	 not null	PRIMARY KEY,
+   ID                   int             	 not null	PRIMARY KEY IDENTITY(1,1),
    NOMBRE               varchar(100)         null,
    FECHA_CREACION       date                 null
 )
@@ -182,7 +182,7 @@ go
 /* Table: ROL_USUARIO                                           */
 /*==============================================================*/
 create table ROL_USUARIO (
-   ID                   int                  not null	PRIMARY KEY,
+   ID                   int                  not null	PRIMARY KEY IDENTITY(1,1),
    ID_USUARIO           int                  not null,
    ID_ROL               int                  not null
 )
@@ -192,7 +192,7 @@ go
 /* Table: USUARIO                                               */
 /*==============================================================*/
 create table USUARIO (
-   ID                   int                  not null PRIMARY KEY,
+   ID                   int                  not null PRIMARY KEY IDENTITY(1,1),
    NOMBRE               varchar(100)         null,
    DIRECCION            varchar(100)         null,
    FECHA_NAC            date                 null,
