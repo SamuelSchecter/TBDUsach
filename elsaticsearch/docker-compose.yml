@@ -1,0 +1,24 @@
+version: '2.2'
+services:
+  elasticsearch:
+    image: elasticsearch-custom
+    environment:
+      - node.name=productos
+      - cluster.name=es-easysell-cluster
+      - cluster.initial_master_nodes=productos
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data:/elsaticsearch/data/productos.json
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+
+volumes:
+  data:
+
+networks:
+  elastic:

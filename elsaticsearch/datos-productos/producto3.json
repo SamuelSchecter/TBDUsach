@@ -1,0 +1,14 @@
+{
+    "Nombre": "correa conejo",
+    "description": "correa de conejo",
+    "precio": 2990,
+    "categorias": ["mascotas", "paseo"],
+    "puntuaciones": [
+        {
+            "usuario": "ximena",
+            "comentario": "Pesimo producto, lo peor que he comprado",
+            "calificacion": 5,
+            "fecha_puntuacion": "2018/08/23"
+        }
+    ]
+}
