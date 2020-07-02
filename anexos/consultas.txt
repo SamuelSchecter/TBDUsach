@@ -1,0 +1,53 @@
+1. Todos los usuarios con todos los productos que venden.
+2. Usuario con todos los productos que vende.
+3. Usuario con los productos que ha vendido.
+4. Usuarios que más productos han vendido.
+5. Usuarios que menos productos han vendido.
+6. Usuarios que no han vendido productos.
+7. Todos los usuarios con todos los productos que compraron.
+8. Usuario con todos los productos que compró.
+9. Usuarios que menos productos han comprado.
+10.Usuarios que más productos han comprado.
+11.Usuarios que no han comprado.
+12.Detalle de alguna compra.
+13.Detalle de todas las compras
+14.Todos los usuarios y sus puntuaciones.
+15.Usuario y sus puntuaciones.
+16.Usuarios con mejor puntuaciones.
+17.Usuarios con peor puntuaciones.
+18.Usuarios sin puntuaciones.
+19.Todos los productos con todas sus categorías.
+20.Producto y sus categorías.
+21.Productos sin categoría.
+22.Todos los productos con todas sus puntuaciones.
+23.Producto con todas sus puntuaciones.
+24.Productos no puntuados.
+25.Productos con más puntuaciones.
+26.Productos con menos puntuaciones.
+27.Todos los usuarios y los productos puntuados.
+28.Usuario y productos que ha puntuado.
+29.Usuarios que no han puntuado productos.
+30.Usuarios que más productos han puntuado.
+31.Usuarios que menos productos han puntuado.
+32.Todos los usuarios con sus roles.
+33.Usuario y sus roles.
+34.Todos los usuarios y sus accesos.
+35.Usuario y sus accesos.
+36.Todos los usuarios con todas sus consultas.
+37.Usuario con todas sus consultas.
+38.Usuarios que no han hecho consultas.
+39.Todos los productos sin imagen.
+40.Consultar una publicacion, con producto y categoria.
+41.Listar publicaciones vigentes.
+42.Listar publicaciones no vigentes.
+43.Listar todos las publicaciones del Mes.
+44.Listar todos los producto del Mes, ordenados por tipo de categoria y fecha.
+45.Informe de ingresos mensuales, publicaciones y productos subidos.
+46.Listado de pagos del mes considerando publicacion.
+47.Consultar todos los tipos según categoria. 	
+48.Consultar roles según usuarios registrados.
+49.Consultar estado de una publicacion.
+50.Consultar estado de publicaciones de un mes y anual.
+51.Consultar estado de publicaciones por categoria [especificar]
+52.Listar las publicaciones en total (vigentes y no vigentes). Calcular el total y obtener porcentaje publicacion cerrada y vendida por mes.
+
