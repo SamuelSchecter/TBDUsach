@@ -8,199 +8,182 @@
 from django.db import models
 
 
-class AccesoRolItem(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    id_rol = models.ForeignKey('Rol', models.DO_NOTHING, db_column='ID_ROL')  # Field name made lowercase.
-    id_item = models.ForeignKey('ItemPlataforma', models.DO_NOTHING, db_column='ID_ITEM')  # Field name made lowercase.
+class Estado(models.Model):
+    nombre = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        managed = False
-        db_table = 'ACCESO_ROL_ITEM'
+        managed = True
+        db_table = 'ESTADO'
+
+
+class Usuario(models.Model):
+    nombre = models.CharField(max_length=100, blank=True, null=True)
+    direccion = models.CharField(max_length=100, blank=True, null=True)
+    fecha_nac = models.DateField(blank=True, null=True)
+    ocupacion = models.CharField(max_length=100, blank=True, null=True)
+    telefono = models.CharField(max_length=15, blank=True, null=True)
+    fecha_creacion = models.DateField(blank=True, null=True)
+    estado_activacion = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    contrasena = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'USUARIO'
+
+
+class ItemPlataforma(models.Model):
+    item_acceso = models.CharField(max_length=100, blank=True, null=True)
+    estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+
+    class Meta:
+        managed = True
+        db_table = 'ITEM_PLATAFORMA'
 
 
 class AccesoUsuario(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='ID_USUARIO')  # Field name made lowercase.
-    fecha_acceso = models.DateField(db_column='FECHA_ACCESO', blank=True, null=True)  # Field name made lowercase.
-    estado = models.BooleanField(db_column='ESTADO', blank=True, null=True)  # Field name made lowercase.
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    fecha_acceso = models.DateField(blank=True, null=True)
+    estado = models.BooleanField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ACCESO_USUARIO'
 
 
-class Categoria(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    tipo = models.CharField(db_column='TIPO', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='NOMBRE', max_length=100, blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'CATEGORIA'
-
-
-class CategoriaProducto(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='ID_PRODUCTO')  # Field name made lowercase.
-    id_categoria = models.ForeignKey(Categoria, models.DO_NOTHING, db_column='ID_CATEGORIA')  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'CATEGORIA_PRODUCTO'
-
-
 class Compra(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    costo = models.IntegerField(db_column='COSTO', blank=True, null=True)  # Field name made lowercase.
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='ID_USUARIO')  # Field name made lowercase.
+    costo = models.IntegerField(blank=True, null=True)
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'COMPRA'
 
 
-class Consulta(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    texto = models.CharField(db_column='TEXTO', max_length=1000, blank=True, null=True)  # Field name made lowercase.
-    fecha_consulta = models.DateField(db_column='FECHA_CONSULTA', blank=True, null=True)  # Field name made lowercase.
-    estado = models.ForeignKey('Estado', models.DO_NOTHING, db_column='ESTADO')  # Field name made lowercase.
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='ID_USUARIO')  # Field name made lowercase.
-    id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='ID_PRODUCTO')  # Field name made lowercase.
+class Publicacion(models.Model):
+    fecha_creacion = models.DateField(blank=True, null=True)
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
 
     class Meta:
-        managed = False
+        managed = True
+        db_table = 'PUBLICACION'
+
+
+class Producto(models.Model):
+    nombre = models.CharField(max_length=100, blank=True, null=True)
+    estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    id_publicacion = models.ForeignKey(Publicacion, on_delete=models.CASCADE)
+    precio = models.IntegerField(blank=True, null=True)
+    descripcion = models.CharField(max_length=1000, blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'PRODUCTO'
+
+
+class Consulta(models.Model):
+    texto = models.CharField(max_length=1000, blank=True, null=True)
+    fecha_consulta = models.DateField(blank=True, null=True)
+    estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+
+    class Meta:
+        managed = True
         db_table = 'CONSULTA'
 
 
 class DetalleCompra(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='ID_PRODUCTO')  # Field name made lowercase.
-    cantidad = models.IntegerField(db_column='CANTIDAD', blank=True, null=True)  # Field name made lowercase.
-    fecha_compra = models.DateField(db_column='FECHA_COMPRA', blank=True, null=True)  # Field name made lowercase.
-    id_compra = models.ForeignKey(Compra, models.DO_NOTHING, db_column='ID_COMPRA')  # Field name made lowercase.
+    id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.IntegerField(blank=True, null=True)
+    fecha_compra = models.DateField(blank=True, null=True)
+    id_compra = models.ForeignKey(Compra, on_delete=models.CASCADE)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'DETALLE_COMPRA'
 
 
-class Estado(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='NOMBRE', max_length=50, blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'ESTADO'
-
-
 class Imagen(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='ID_PRODUCTO')  # Field name made lowercase.
-    imagen = models.BinaryField(db_column='IMAGEN', blank=True, null=True)  # Field name made lowercase.
-    tamano = models.IntegerField(db_column='TAMANO', blank=True, null=True)  # Field name made lowercase.
-    formato = models.CharField(db_column='FORMATO', max_length=10, blank=True, null=True)  # Field name made lowercase.
-    fecha_creacion = models.DateField(db_column='FECHA_CREACION', blank=True, null=True)  # Field name made lowercase.
+    id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    imagen = models.BinaryField(blank=True, null=True)
+    tamano = models.IntegerField(blank=True, null=True)
+    formato = models.CharField(max_length=10, blank=True, null=True)
+    fecha_creacion = models.DateField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'IMAGEN'
 
 
-class ItemPlataforma(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    item_acceso = models.CharField(db_column='ITEM_ACCESO', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    estado = models.ForeignKey(Estado, models.DO_NOTHING, db_column='ESTADO')  # Field name made lowercase.
+class Categoria(models.Model):
+    tipo = models.CharField(max_length=100, blank=True, null=True)
+    nombre = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
-        managed = False
-        db_table = 'ITEM_PLATAFORMA'
+        managed = True
+        db_table = 'CATEGORIA'
 
 
-class Producto(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='NOMBRE', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    estado = models.ForeignKey(Estado, models.DO_NOTHING, db_column='ESTADO')  # Field name made lowercase.
-    id_publicacion = models.ForeignKey('Publicacion', models.DO_NOTHING, db_column='ID_PUBLICACION')  # Field name made lowercase.
-    precio = models.IntegerField(db_column='PRECIO', blank=True, null=True)  # Field name made lowercase.
-    descripcion = models.CharField(db_column='DESCRIPCION', max_length=1000, blank=True, null=True)  # Field name made lowercase.
+class CategoriaProducto(models.Model):
+    id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    id_categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     class Meta:
-        managed = False
-        db_table = 'PRODUCTO'
+        managed = True
+        db_table = 'CATEGORIA_PRODUCTO'
 
-
-class Publicacion(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    fecha_creacion = models.DateField(db_column='FECHA_CREACION', blank=True, null=True)  # Field name made lowercase.
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='ID_USUARIO')  # Field name made lowercase.
-    estado = models.ForeignKey(Estado, models.DO_NOTHING, db_column='ESTADO')  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'PUBLICACION'
-
-
+        
 class PuntuacionProducto(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    id_producto = models.ForeignKey(Producto, models.DO_NOTHING, db_column='ID_PRODUCTO')  # Field name made lowercase.
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='ID_USUARIO')  # Field name made lowercase.
-    comentario = models.CharField(db_column='COMENTARIO', max_length=1000, blank=True, null=True)  # Field name made lowercase.
-    calificacion = models.IntegerField(db_column='CALIFICACION', blank=True, null=True)  # Field name made lowercase.
-    fecha_puntuacion_producto = models.DateField(db_column='FECHA_PUNTUACION_PRODUCTO', blank=True, null=True)  # Field name made lowercase.
-    fecha_calificacion = models.DateField(db_column='FECHA_CALIFICACION', blank=True, null=True)  # Field name made lowercase.
+    id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    comentario = models.CharField(max_length=1000, blank=True, null=True)
+    calificacion = models.IntegerField(blank=True, null=True)
+    fecha_puntuacion_producto = models.DateField(blank=True, null=True)
+    fecha_calificacion = models.DateField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'PUNTUACION_PRODUCTO'
 
 
 class PuntuacionUsuario(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='ID_USUARIO')  # Field name made lowercase.
-    id_usuario_calificado = models.IntegerField(db_column='ID_USUARIO_CALIFICADO')  # Field name made lowercase.
-    fecha_puntuacion = models.DateField(db_column='FECHA_PUNTUACION', blank=True, null=True)  # Field name made lowercase.
-    calificacion = models.IntegerField(db_column='CALIFICACION', blank=True, null=True)  # Field name made lowercase.
-    fecha_calificacion = models.DateField(db_column='FECHA_CALIFICACION', blank=True, null=True)  # Field name made lowercase.
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario_calificado = models.IntegerField(null=False)
+    fecha_puntuacion = models.DateField(blank=True, null=True)
+    calificacion = models.IntegerField(blank=True, null=True)
+    fecha_calificacion = models.DateField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'PUNTUACION_USUARIO'
 
 
 class Rol(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='NOMBRE', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    fecha_creacion = models.DateField(db_column='FECHA_CREACION', blank=True, null=True)  # Field name made lowercase.
+    nombre = models.CharField(max_length=100, blank=True, null=True)
+    fecha_creacion = models.DateField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ROL'
 
 
 class RolUsuario(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='ID_USUARIO')  # Field name made lowercase.
-    id_rol = models.ForeignKey(Rol, models.DO_NOTHING, db_column='ID_ROL')  # Field name made lowercase.
+    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ROL_USUARIO'
 
 
-class Usuario(models.Model):
-    id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    nombre = models.CharField(db_column='NOMBRE', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    direccion = models.CharField(db_column='DIRECCION', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    fecha_nac = models.DateField(db_column='FECHA_NAC', blank=True, null=True)  # Field name made lowercase.
-    ocupacion = models.CharField(db_column='OCUPACION', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    telefono = models.CharField(db_column='TELEFONO', max_length=15, blank=True, null=True)  # Field name made lowercase.
-    fecha_creacion = models.DateField(db_column='FECHA_CREACION', blank=True, null=True)  # Field name made lowercase.
-    estado_activacion = models.ForeignKey('self', models.DO_NOTHING, db_column='ESTADO_ACTIVACION')  # Field name made lowercase.
-    contrasena = models.CharField(db_column='CONTRASENA', max_length=50, blank=True, null=True)  # Field name made lowercase.
+class AccesoRolItem(models.Model):
+    id_rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
+    id_item = models.ForeignKey(ItemPlataforma, on_delete=models.CASCADE)
 
     class Meta:
-        managed = False
-        db_table = 'USUARIO'
+        managed = True
+        db_table = 'ACCESO_ROL_ITEM'
 
 
 class AuthGroup(models.Model):
