@@ -16,11 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
-from core.views import UserList, PublicacionList, EstadoList
+from core.views import ListaUsuarios, ListaEstados, ListaPublicaciones, ListaProductos, ListaCategorias, ProductosPorUsuarioLista
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^usuarios/', UserList.as_view()),
-    url(r'^estados/', EstadoList.as_view()),
-    url(r'^publicaciones/', PublicacionList.as_view())
+    url(r'^usuarios/', ListaUsuarios.as_view()),
+    url(r'^estados/', ListaEstados.as_view()),
+    url(r'^publicaciones/', ListaPublicaciones.as_view()),
+    url(r'^productos/', ListaProductos.as_view()),
+    url(r'^categorias/', ListaCategorias.as_view()),
+    url(r'^usuario/productos', ProductosPorUsuarioLista.as_view())
 ]

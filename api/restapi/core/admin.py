@@ -15,7 +15,6 @@ from core.models import PuntuacionProducto
 from core.models import PuntuacionUsuario
 from core.models import Rol
 from core.models import RolUsuario
-from core.models import Usuario
 
 # Register your models here.
 admin.site.register(AccesoRolItem)
@@ -34,4 +33,3 @@ admin.site.register(PuntuacionProducto)
 admin.site.register(PuntuacionUsuario)
 admin.site.register(Rol)
 admin.site.register(RolUsuario)
-admin.site.register(Usuario)

@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Estado(models.Model):
@@ -14,21 +15,6 @@ class Estado(models.Model):
     class Meta:
         managed = True
         db_table = 'ESTADO'
-
-
-class Usuario(models.Model):
-    nombre = models.CharField(max_length=100, blank=True, null=True)
-    direccion = models.CharField(max_length=100, blank=True, null=True)
-    fecha_nac = models.DateField(blank=True, null=True)
-    ocupacion = models.CharField(max_length=100, blank=True, null=True)
-    telefono = models.CharField(max_length=15, blank=True, null=True)
-    fecha_creacion = models.DateField(blank=True, null=True)
-    estado_activacion = models.ForeignKey(Estado, on_delete=models.CASCADE)
-    contrasena = models.CharField(max_length=50, blank=True, null=True)
-
-    class Meta:
-        managed = True
-        db_table = 'USUARIO'
 
 
 class ItemPlataforma(models.Model):
@@ -41,7 +27,7 @@ class ItemPlataforma(models.Model):
 
 
 class AccesoUsuario(models.Model):
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_acceso = models.DateField(blank=True, null=True)
     estado = models.BooleanField(blank=True, null=True)
 
@@ -52,7 +38,7 @@ class AccesoUsuario(models.Model):
 
 class Compra(models.Model):
     costo = models.IntegerField(blank=True, null=True)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         managed = True
@@ -61,7 +47,7 @@ class Compra(models.Model):
 
 class Publicacion(models.Model):
     fecha_creacion = models.DateField(blank=True, null=True)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
 
     class Meta:
@@ -85,7 +71,7 @@ class Consulta(models.Model):
     texto = models.CharField(max_length=1000, blank=True, null=True)
     fecha_consulta = models.DateField(blank=True, null=True)
     estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
 
     class Meta:
@@ -136,7 +122,7 @@ class CategoriaProducto(models.Model):
         
 class PuntuacionProducto(models.Model):
     id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     comentario = models.CharField(max_length=1000, blank=True, null=True)
     calificacion = models.IntegerField(blank=True, null=True)
     fecha_puntuacion_producto = models.DateField(blank=True, null=True)
@@ -148,7 +134,7 @@ class PuntuacionProducto(models.Model):
 
 
 class PuntuacionUsuario(models.Model):
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     id_usuario_calificado = models.IntegerField(null=False)
     fecha_puntuacion = models.DateField(blank=True, null=True)
     calificacion = models.IntegerField(blank=True, null=True)
@@ -169,7 +155,7 @@ class Rol(models.Model):
 
 
 class RolUsuario(models.Model):
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     id_rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
 
     class Meta:
