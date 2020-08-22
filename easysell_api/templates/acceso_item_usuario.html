@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <center>
+        <header><h1>Accesos a item por usuario</h1></header>
+    </center>
+</head>
+<body>
+    <center>
+        <table border="1" style="border-color:black;">
+            <tr>
+                <th>Nombre Usuario</th>
+                <th>Item acceso</th>
+            </tr>
+            {% for datadisplay in acceso_item_usuario%}
+            <tr>
+                <td>{{datadisplay.NOMBRE_USUARIO}}</td>
+                <td>{{datadisplay.ITEM_ACCESO}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

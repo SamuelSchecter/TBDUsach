@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <center>
+        <header><h1>Usuarios que no han calificado productos</h1></header>
+    </center>
+</head>
+<body>
+    <center>
+        <table border="1" style="border-color:black;">
+            <tr>
+                <th>Id usuario</th>
+                <th>Nombre usuario</th>
+            </tr>
+            {% for datadisplay in not_cal_producto_usuario%}
+            <tr>
+                <td>{{datadisplay.ID_USUARIO}}</td>
+                <td>{{datadisplay.NOMBRE_USUARIO}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <center>
+        <header><h1>Consultas de usuario sobre productos</h1></header>
+    </center>
+</head>
+<body>
+    <center>
+        <table border="1" style="border-color:black;">
+            <tr>
+                <th>Nombre Usuario</th>
+                <th>Nombre Producto</th>
+                <th>Fecha Consulta</th>
+                <th>Texto Consulta</th>
+            </tr>
+            {% for datadisplay in consulta_usuario_producto%}
+            <tr>
+                <td>{{datadisplay.NOMBRE_USUARIO}}</td>
+                <td>{{datadisplay.NOMBRE_PRODUCTO}}</td>
+                <td>{{datadisplay.FECHA_CONSULTA}}</td>
+                <td>{{datadisplay.TEXTO_CONSULTA}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

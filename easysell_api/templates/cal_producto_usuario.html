@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <center>
+        <header><h1>Calificacion usuario a producto</h1></header>
+    </center>
+</head>
+<body>
+    <center>
+        <table border="1">
+            <tr>
+                <th>USUARIO</th>
+                <th>PRODUCTO</th>
+                <th>CALIFICACION</th>
+                <th>FECHA_CALIFICACION</th>
+            </tr>
+            {% for datadisplay in cal_producto_usuario%}
+            <tr>
+                <td>{{datadisplay.USUARIO}}</td>
+                <td>{{datadisplay.PRODUCTO}}</td>
+                <td>{{datadisplay.CALIFICACION}}</td>
+                <td>{{datadisplay.FECHA_CALIFICACION}}</td>            
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

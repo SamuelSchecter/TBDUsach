@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <center>
+        <header><h1>Usuarios del sistema y su rol</h1></header>
+    </center>
+</head>
+<body>
+    <center>
+        <table border="1" style="border-color:black;">
+            <tr>
+                <th>Id usuario</th>
+                <th>Nombre usuario</th>
+                <th>Nombre rol</th>
+            </tr>
+            {% for datadisplay in usuarios%}
+            <tr>
+                <td>{{datadisplay.ID_USUARIO}}</td>
+                <td>{{datadisplay.NOMBRE_USUARIO}}</td>
+                <td>{{datadisplay.NOMBRE_ROL}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>
